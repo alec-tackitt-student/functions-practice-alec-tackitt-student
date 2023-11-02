@@ -38,24 +38,27 @@ switch (select) {
                 Console.WriteLine("----------------------------------------------");
                 for (int i = 0; i < multiplyArrayNums.Length; i++)
                 {
-                    multiplyArrayNums[i] = randNum.Next(0, 10);
+                    multiplyArrayNums[i] = randNum.Next(1, 10);
                 }
                 MultiplyAllNumbers(multiplyArrayNums);
                 break;
 
             case 4:
                 Console.WriteLine("Find minimum number,  please the first number");
-                int num1 = int.Parse(Console.ReadLine()!);
+                int MinNum1 = int.Parse(Console.ReadLine()!);
                 System.Console.WriteLine("input the second number");
-                int num2 = int.Parse(Console.ReadLine()!);
+                int MinNum2 = int.Parse(Console.ReadLine()!);
                 Console.WriteLine("----------------------------------------------");
-                FindMin(num1, num2);
+                FindMin(MinNum1, MinNum2);
                 break;
 
             case 5:
-                Console.WriteLine("Find maximum number,  please input 2 numbers seperated by spaces");
-                int maxNums = Convert.ToInt32(Console.ReadLine());
-                //FindMax(maxNums[]);
+                Console.WriteLine("Find maximum number,  please the first number");
+                int MaxNum1 = int.Parse(Console.ReadLine()!);
+                System.Console.WriteLine("input the second number");
+                int MaxNum2 = int.Parse(Console.ReadLine()!);
+                Console.WriteLine("----------------------------------------------");
+                FindMax(MaxNum1, MaxNum2);
                 break;
 
             case 6:
@@ -67,7 +70,7 @@ switch (select) {
             case 7:
                 Console.WriteLine("please input your desired word");
                 string? word = Console.ReadLine();
-                //PrintLetters(word);
+                PrintLetters(word!);
                 break;
 }
 //waiting function 
@@ -86,11 +89,11 @@ static void SayHello() {
 }
 static void AddAllNumbers(int[] nums) {
     int sum = 0;
-    foreach (int num in nums) {
+    foreach (int num in nums) { // for each number in the array, add it to the sum
         sum += num;
     }
     System.Console.WriteLine("the random numbers are:");
-    foreach(var item in nums)
+    foreach(var item in nums) // print each number in the array
     {
         Console.Write(item.ToString() + " ");
     }
@@ -99,30 +102,54 @@ static void AddAllNumbers(int[] nums) {
 }
 static void MultiplyAllNumbers(int[]nums) {
      int product = 1;
-    foreach (int num in nums) {
+    foreach (int num in nums) { // for each number in the array, multiply it by the previous number
         product *= num;
     }
     System.Console.WriteLine("the random numbers are:");
-    foreach(var item in nums)
+    foreach(var item in nums) // print each number in the array
     {
         Console.Write(item.ToString() + " ");
     }
     System.Console.WriteLine(", the product of the numbers is " + product);
 }
 static void FindMin(int num1, int num2) {
+    int smallestNum = Math.Min(num1, num2);
     bool numsAreEqual = num1 == num2;
     if (numsAreEqual){
         System.Console.WriteLine("-1");
     }
+    else {
+        System.Console.WriteLine(smallestNum);
+    }
+    
+}
+static void FindMax(int num1, int num2) {
+    int LargestNum = Math.Max(num1, num2);
+    bool numsAreEqual = num1 == num2;
+    if (numsAreEqual){
+        System.Console.WriteLine("-1");
+    }
+    else {
+        System.Console.WriteLine(LargestNum);
+    }
 }
 
 static void isOdd(int num) {
-    bool isNumEven = Math.IEEERemainder(num, 2) == 0;
+    bool isNumEven = Math.IEEERemainder(num, 2) == 0; // check if the number is divisible by 2, AKA even
 
     if (isNumEven) {
-        System.Console.WriteLine("the number is even");
+        System.Console.WriteLine("the number is even, so the answer is " + isNumEven);
     }
     else {
-        System.Console.WriteLine("the number is odd");
+        System.Console.WriteLine("the number is odd, so the answer is " + isNumEven);
     }
+}
+static void PrintLetters(string word) {
+    char[] letters = word.ToCharArray();
+    
+    foreach(var item in letters) // print each letter in the array
+    {
+        Console.WriteLine(item.ToString() + " ");
+    }
+    System.Console.WriteLine("");
 }
